@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "KYCAINE ETERNALTECH - High-end AI & Automation software house specializing in scalable systems and intelligent automation." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content="AI development, automation systems, scalable backend, cloud-native solutions, software house, AI automation agency" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+	</head>
+	<body>
+		<slot />
+		
+		<script>
+			// Basic Parallax Implementation
+			window.addEventListener('scroll', () => {
+				const scrolled = window.scrollY;
+				const parallaxItems = document.querySelectorAll('.parallax-bg');
+				
+				parallaxItems.forEach((item) => {
+					const element = item as HTMLElement;
+					const speed = 0.5;
+					element.style.transform = `translateY(${scrolled * speed}px)`;
+				});
+			});
+		</script>
+	</body>
+</html>

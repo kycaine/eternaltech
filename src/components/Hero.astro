@@ -1,0 +1,129 @@
+---
+---
+<section class="hero parallax-section">
+  <video class="site-bg-video" autoplay muted loop playsinline>
+    <source src="/bg.mp4" type="video/mp4">
+  </video>
+
+  <div class="parallax-bg hero-bg"></div>
+  <div class="container hero-container">
+    <div class="hero-content">
+      <span class="hero-label">Scale with Intelligence</span>
+      <h1 class="hero-title">Replace Repetitive Work <span class="text-gold">with AI</span>.</h1>
+      <p class="hero-description">
+        We design and deploy autonomous AI systems that replace repetitive work, optimize decision-making, and transform your operations into a scalable growth engine that runs 24/7
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-gold">Build Your Own AI Assistant</a>
+        <a href="#services" class="btn btn-secondary inverse">See How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 0;
+    color: var(--color-white);
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .site-bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 70%, rgba(60, 42, 33, 0.4) 0%, transparent 50%),
+                linear-gradient(135deg, #1A120B 0%, #2D1E14 100%);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-label {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+  }
+
+  .hero-description {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 650px;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn.inverse {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+  }
+
+  .btn.inverse:hover {
+    border-color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-dark-brown);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+    .hero-actions {
+      flex-direction: column;
+    }
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

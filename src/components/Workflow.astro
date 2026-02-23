@@ -1,0 +1,101 @@
+---
+const steps = [
+  {
+    title: "Discovery & Analysis",
+    description: "Deep dive into your business logic, constraints, and data landscape to define clear technical objectives."
+  },
+  {
+    title: "Sprint Planning",
+    description: "Architecting the roadmap with agile methodologies, ensuring transparency and alignment on every feature."
+  },
+  {
+    title: "Development (CI/CD)",
+    description: "High-velocity engineering with automated pipelines, rigorous code reviews, and constant integration."
+  },
+  {
+    title: "QA & Stress Testing",
+    description: "Ensuring resilience through automated testing, security audits, and performance benchmarking under load."
+  },
+  {
+    title: "Deployment & Scale",
+    description: "Zero-downtime shipping to cloud-native environments with robust monitoring and telemetry."
+  },
+  {
+    title: "Optimization",
+    description: "Continuous refinement based on real-world data and evolving business requirements for maximum ROI."
+  }
+];
+---
+<section id="workflow" class="workflow">
+  <div class="container">
+    <span class="section-subtitle">Our Process</span>
+    <h2 class="section-title">Engineering <span class="text-gold">Transparency</span></h2>
+    
+    <div class="workflow-steps">
+      {steps.map((step, index) => (
+        <div class="step-item">
+          <div class="step-number">{String(index + 1).padStart(2, '0')}</div>
+          <div class="step-content">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-text">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow {
+    padding: var(--section-padding);
+    background-color: var(--color-off-white);
+  }
+
+  .workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 5rem;
+    position: relative;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .step-item:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-5px);
+  }
+
+  .step-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gold-light);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark-brown);
+  }
+
+  .step-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+  }
+</style>

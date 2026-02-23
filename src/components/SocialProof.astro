@@ -1,0 +1,151 @@
+---
+const testimonial = {
+  quote: `"KyCaine EternalTech doesn't just write code; they engineer business outcomes."`,
+  position: "CTO, NexaSystems",
+  avatar: "🏢"
+};
+
+const logos = [
+  "TechFlow", "AIGlobal", "CloudScale", "DataCore", "FinVantage"
+];
+---
+<section id="trust" class="social-proof">
+  <div class="container">
+    <div class="testimonial-container">
+      <div class="quote-icon">"</div>
+      <p class="quote-text">{testimonial.quote}</p>
+      <div class="author-info">
+        <span class="author-avatar">{testimonial.avatar}</span>
+        <div>
+          <h4 class="author-name">{testimonial.author}</h4>
+          <span class="author-position">{testimonial.position}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="logos-section">
+      <span class="logos-title">Trusted by Tech-Driven Enterprises</span>
+      <div class="logos-grid">
+        {logos.map(logo => (
+          <div class="logo-item">{logo}</div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    padding: var(--section-padding);
+    background-color: rgba(60, 40, 30, 0.7); /* opacity 0.85 */
+  }
+
+  .testimonial-container {
+    max-width: 900px;
+    margin: 0 auto 6rem auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .quote-icon {
+    font-size: 8rem;
+    color: var(--color-gold-light);
+    opacity: 0.3;
+    position: absolute;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: serif;
+    z-index: 0;
+  }
+
+  .quote-text {
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--color-off-white);
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+    line-height: 1.4;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .author-avatar {
+    font-size: 2.5rem;
+    background-color: var(--color-off-white);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-gold-light);
+  }
+
+  .author-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--color-white);
+  }
+
+  .author-position {
+    font-size: 0.9rem;
+    color: var(--color-off-white);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .logos-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 4rem;
+    text-align: center;
+  }
+
+  .logos-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-off-white);
+    display: block;
+    margin-bottom: 3rem;
+  }
+
+  .logos-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    opacity: 0.6;
+  }
+
+  .logo-item {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-off-white);
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+  }
+
+  .logo-item:hover {
+    filter: grayscale(0%);
+    color: var(--color-gold-metallic);
+  }
+
+  @media (max-width: 768px) {
+    .quote-text {
+      font-size: 1.4rem;
+    }
+    .logos-grid {
+      justify-content: center;
+    }
+  }
+</style>

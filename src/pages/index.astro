@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import TechStack from '../components/TechStack.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Workflow from '../components/Workflow.astro';
+import SocialProof from '../components/SocialProof.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="KYCAINE ETERNALTECH - Premium AI & Automation Software House">
+	<Navigation />
+	<main>
+		<Hero />
+		<Services />
+		<TechStack />
+		<Portfolio />
+		<Workflow />
+		<SocialProof />
+		<CTA />
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	main {
+		width: 100%;
+	}
+</style>

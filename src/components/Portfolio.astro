@@ -1,0 +1,125 @@
+---
+const cases = [
+  {
+    client: "Global FinTech Corp",
+    challenge: "Traditional fraud detection systems were failing to identify complex multi-vector attacks, resulting in $12M annual losses.",
+    solution: "Deployed a custom Graph Neural Network (GNN) integrated with real-time stream processing to identify anomalous patterns across 10M+ daily transactions.",
+    impact: "94% detection accuracy achieved within 3 months; reduced annual fraud losses by $8.5M."
+  },
+  {
+    client: "Logistics Enterprise",
+    challenge: "Legacy route optimization was static, failing to account for real-time traffic, fuel costs, and driver fatigue, leading to 15% inefficiency.",
+    solution: "Implemented an agentic automation system using Reinforcement Learning to dynamiclly optimize 5,000+ fleet routes in real-time.",
+    impact: "18% reduction in fuel consumption; 22% improvement in on-time delivery metrics."
+  }
+];
+---
+<section id="portfolio" class="portfolio">
+  <div class="container">
+    <span class="section-subtitle">Case Studies</span>
+    <h2 class="section-title">Measurable <span class="text-gold">Enterprise Impact</span></h2>
+    
+    <div class="cases-container">
+      {cases.map(item => (
+        <div class="case-card">
+          <div class="case-header">
+            <h3 class="client-name">{item.client}</h3>
+          </div>
+          <div class="case-body">
+            <div class="case-section">
+              <h4>The Challenge</h4>
+              <p>{item.challenge}</p>
+            </div>
+            <div class="case-section">
+              <h4>Our Solution</h4>
+              <p>{item.solution}</p>
+            </div>
+            <div class="case-section impact">
+              <h4>The Impact</h4>
+              <p>{item.impact}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    padding: var(--section-padding);
+    background-color: var(--color-white);
+  }
+
+  .cases-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 5rem;
+  }
+
+  .case-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    border-left: 4px solid var(--color-gold);
+    padding: 3rem;
+    background-color: var(--color-off-white);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .client-name {
+    font-size: 2rem;
+    color: var(--color-dark-brown);
+    font-weight: 700;
+  }
+
+  .case-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .case-section h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--color-gold-metallic);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .case-section p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .case-section.impact {
+    grid-column: span 2;
+    background-color: var(--color-white);
+    padding: 2rem;
+    border: 1px dashed var(--color-gold);
+    border-radius: 4px;
+  }
+
+  .case-section.impact p {
+    font-weight: 600;
+    color: var(--color-dark-brown);
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 992px) {
+    .case-card {
+      grid-template-columns: 1fr;
+    }
+    .case-body {
+      grid-template-columns: 1fr;
+    }
+    .case-section.impact {
+      grid-column: span 1;
+    }
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+  }
+</style>
