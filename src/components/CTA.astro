@@ -1,16 +1,20 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <section id="contact" class="final-cta">
   <div class="parallax-bg cta-bg"></div>
   <div class="container">
     <div class="cta-content">
-      <h2 class="cta-title">Ready to Engineer Your <span class="text-gold">Competitive Advantage</span>?</h2>
+      <h2 class="cta-title">{t('cta.title')} <span class="text-gold">{t('cta.title_gold')}</span>?</h2>
       <p class="cta-text">
-        Join the ranks of tech-driven enterprises leveraging our scalable AI and automation systems. Let's discuss your technical roadmap.
+        {t('cta.text')}
       </p>
       <div class="cta-actions">
-        <a href="mailto:consult@kycaine.tech" class="btn btn-gold">Book Technical Consultation</a>
-        <a href="#portfolio" class="btn btn-secondary inverse">Explore Case Studies</a>
+        <a href="mailto:consult@kycaine.tech" class="btn btn-gold">{t('cta.btn_primary')}</a>
+        <a href="#portfolio" class="btn btn-secondary inverse">{t('cta.btn_secondary')}</a>
       </div>
     </div>
   </div>

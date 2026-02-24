@@ -1,9 +1,24 @@
 ---
-const testimonial = {
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const testimonial_en = {
   quote: `"KyCaine EternalTech doesn't just write code; they engineer business outcomes."`,
   position: "CTO, NexaSystems",
-  avatar: "🏢"
+  avatar: "🏢",
+  author: "Marcus Thorne"
 };
+
+const testimonial_id = {
+  quote: `"KyCaine EternalTech tidak hanya menulis kode; mereka merekayasa hasil bisnis."`,
+  position: "CTO, NexaSystems",
+  avatar: "🏢",
+  author: "Marcus Thorne"
+};
+
+const testimonial = lang === 'en' ? testimonial_en : testimonial_id;
 
 const logos = [
   "TechFlow", "AIGlobal", "CloudScale", "DataCore", "FinVantage"
@@ -24,7 +39,7 @@ const logos = [
     </div>
     
     <div class="logos-section">
-      <span class="logos-title">Trusted by Tech-Driven Enterprises</span>
+      <span class="logos-title">{t('trust.title')}</span>
       <div class="logos-grid">
         {logos.map(logo => (
           <div class="logo-item">{logo}</div>

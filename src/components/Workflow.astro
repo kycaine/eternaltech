@@ -1,5 +1,10 @@
 ---
-const steps = [
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const steps_en = [
   {
     title: "Discovery & Analysis",
     description: "Deep dive into your business logic, constraints, and data landscape to define clear technical objectives."
@@ -25,11 +30,40 @@ const steps = [
     description: "Continuous refinement based on real-world data and evolving business requirements for maximum ROI."
   }
 ];
+
+const steps_id = [
+  {
+    title: "Penemuan & Analisis",
+    description: "Pahami lebih dalam logika bisnis, kendala, dan lanskap data Anda untuk menetapkan tujuan teknis yang jelas."
+  },
+  {
+    title: "Perencanaan Sprint",
+    description: "Merancang roadmap dengan metodologi tangkas, memastikan transparansi dan keselarasan pada setiap fitur."
+  },
+  {
+    title: "Pengembangan (CI/CD)",
+    description: "Rekayasa kecepatan tinggi dengan pipeline otomatis, tinjauan kode yang ketat, dan integrasi konstan."
+  },
+  {
+    title: "QA & Stress Testing",
+    description: "Memastikan ketangguhan melalui pengujian otomatis, audit keamanan, dan pembandingan kinerja di bawah beban."
+  },
+  {
+    title: "Penyebaran & Skala",
+    description: "Pengiriman tanpa waktu henti ke lingkungan asli cloud dengan pemantauan dan telemetri yang kuat."
+  },
+  {
+    title: "Optimasi",
+    description: "Penyempurnaan berkelanjutan berdasarkan data dunia nyata dan persyaratan bisnis yang berkembang untuk ROI maksimum."
+  }
+];
+
+const steps = lang === 'en' ? steps_en : steps_id;
 ---
 <section id="workflow" class="workflow">
   <div class="container">
-    <span class="section-subtitle">Our Process</span>
-    <h2 class="section-title">Engineering <span class="text-gold">Transparency</span></h2>
+    <span class="section-subtitle">{t('workflow.subtitle')}</span>
+    <h2 class="section-title">{t('workflow.title')} <span class="text-gold">{t('workflow.title_gold')}</span></h2>
     
     <div class="workflow-steps">
       {steps.map((step, index) => (

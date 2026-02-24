@@ -1,21 +1,25 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <section class="hero parallax-section">
   <video class="site-bg-video" autoplay muted loop playsinline>
-    <source src="bg.mp4" type="video/mp4">
+    <source src="/eternaltech/bg.mp4" type="video/mp4">
   </video>
 
   <div class="parallax-bg hero-bg"></div>
   <div class="container hero-container">
     <div class="hero-content">
-      <span class="hero-label">Scale with Intelligence</span>
-      <h1 class="hero-title">Replace Repetitive Work <span class="text-gold">with AI</span>.</h1>
+      <span class="hero-label">{t('hero.label')}</span>
+      <h1 class="hero-title">{t('hero.title')} <span class="text-gold">{t('hero.title_gold')}</span>.</h1>
       <p class="hero-description">
-        We design and deploy autonomous AI systems that replace repetitive work, optimize decision-making, and transform your operations into a scalable growth engine that runs 24/7
+        {t('hero.description')}
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-gold">Build Your Own AI Assistant</a>
-        <a href="#services" class="btn btn-secondary inverse">See How It Works</a>
+        <a href="#contact" class="btn btn-gold">{t('hero.cta_primary')}</a>
+        <a href="#services" class="btn btn-secondary inverse">{t('hero.cta_secondary')}</a>
       </div>
     </div>
   </div>

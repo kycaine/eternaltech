@@ -1,33 +1,38 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
 ---
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a href="/" class="logo">
+      <a href={base} class="logo">
         KYCAINE <span class="text-gold">ETERNALTECH</span>
       </a>
       <p class="brand-description">
-        Leading the production-grade AI revolution with scalable systems and intelligent automation.
+        {t('footer.description')}
       </p>
     </div>
     
     <div class="footer-links">
-      <h4>Platform</h4>
-      <a href="#services">Expertise</a>
-      <a href="#tech-stack">Tech Stack</a>
-      <a href="#portfolio">Case Studies</a>
+      <h4>{t('footer.platform')}</h4>
+      <a href="#services">{t('nav.services')}</a>
+      <a href="#tech-stack">{t('nav.stack')}</a>
+      <a href="#portfolio">{t('nav.work')}</a>
     </div>
     
     <div class="footer-links">
-      <h4>Company</h4>
-      <a href="#">About Us</a>
+      <h4>{t('footer.company')}</h4>
+      <a href="#">{t('footer.company')}</a>
       <a href="#">Careers</a>
       <a href="#">Open Source</a>
     </div>
     
     <div class="footer-links">
-      <h4>Connect</h4>
+      <h4>{t('footer.connect')}</h4>
       <a href="#">LinkedIn</a>
       <a href="#">GitHub</a>
       <a href="mailto:contact@kycaine.tech">Contact Us</a>
@@ -35,7 +40,7 @@ const currentYear = new Date().getFullYear();
   </div>
   
   <div class="container footer-bottom">
-    <p>&copy; {currentYear} KyCaine EternalTech. All rights reserved.</p>
+    <p>&copy; {currentYear} KyCaine EternalTech. {t('footer.rights')}</p>
     <div class="bottom-links">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>

@@ -1,5 +1,10 @@
 ---
-const stack = [
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const stack_en = [
   {
     category: "Frontend Architecture",
     items: ["React", "Vue", "Next.js", "Astro", "TypeScript"]
@@ -13,11 +18,28 @@ const stack = [
     items: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD Pipelines"]
   }
 ];
+
+const stack_id = [
+  {
+    category: "Arsitektur Frontend",
+    items: ["React", "Vue", "Next.js", "Astro", "TypeScript"]
+  },
+  {
+    category: "Backend & Inti",
+    items: ["Node.js", "Go", "Python", "Laravel", "PostgreSQL"]
+  },
+  {
+    category: "Cloud & Infrastruktur",
+    items: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD Pipelines"]
+  }
+];
+
+const stack = lang === 'en' ? stack_en : stack_id;
 ---
 <section id="tech-stack" class="tech-stack">
   <div class="container">
-    <span class="section-subtitle">Our Arsenal</span>
-    <h2 class="section-title">Production-Grade <span class="text-gold">Tech Stack</span></h2>
+    <span class="section-subtitle">{t('tech.subtitle')}</span>
+    <h2 class="section-title">{t('tech.title')} <span class="text-gold">{t('tech.title_gold')}</span></h2>
     
     <div class="stack-grid">
       {stack.map(group => (

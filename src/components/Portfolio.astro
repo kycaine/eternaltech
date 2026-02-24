@@ -1,5 +1,10 @@
 ---
-const cases = [
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const cases_en = [
   {
     client: "Global FinTech Corp",
     challenge: "Traditional fraud detection systems were failing to identify complex multi-vector attacks, resulting in $12M annual losses.",
@@ -13,11 +18,33 @@ const cases = [
     impact: "18% reduction in fuel consumption; 22% improvement in on-time delivery metrics."
   }
 ];
+
+const cases_id = [
+  {
+    client: "Global FinTech Corp",
+    challenge: "Sistem deteksi penipuan tradisional gagal mengidentifikasi serangan multi-vektor yang kompleks, mengakibatkan kerugian tahunan sebesar $12 juta.",
+    solution: "Menerapkan Graph Neural Network (GNN) khusus yang terintegrasi dengan pemrosesan stream real-time untuk mengidentifikasi pola anomali di 10 juta+ transaksi harian.",
+    impact: "Akurasi deteksi 94% dicapai dalam 3 bulan; mengurangi kerugian penipuan tahunan sebesar $8,5 juta."
+  },
+  {
+    client: "Perusahaan Logistik",
+    challenge: "Optimasi rute lama bersifat statis, gagal memperhitungkan lalu lintas real-time, biaya bahan bakar, dan kelelahan pengemudi, yang menyebabkan inefisiensi 15%.",
+    solution: "Menerapkan sistem otomasi agentic menggunakan Reinforcement Learning untuk mengoptimalkan 5.000+ rute armada secara dinamis dalam waktu nyata.",
+    impact: "Pengurangan 18% dalam konsumsi bahan bakar; peningkatan 22% dalam metrik pengiriman tepat waktu."
+  }
+];
+
+const cases = lang === 'en' ? cases_en : cases_id;
+const labels = {
+  challenge: lang === 'en' ? 'The Challenge' : 'Tantangan',
+  solution: lang === 'en' ? 'Our Solution' : 'Solusi Kami',
+  impact: lang === 'en' ? 'The Impact' : 'Dampaknya',
+};
 ---
 <section id="portfolio" class="portfolio">
   <div class="container">
-    <span class="section-subtitle">Case Studies</span>
-    <h2 class="section-title">Measurable <span class="text-gold">Enterprise Impact</span></h2>
+    <span class="section-subtitle">{t('portfolio.subtitle')}</span>
+    <h2 class="section-title">{t('portfolio.title')} <span class="text-gold">{t('portfolio.title_gold')}</span></h2>
     
     <div class="cases-container">
       {cases.map(item => (
@@ -27,15 +54,15 @@ const cases = [
           </div>
           <div class="case-body">
             <div class="case-section">
-              <h4>The Challenge</h4>
+              <h4>{labels.challenge}</h4>
               <p>{item.challenge}</p>
             </div>
             <div class="case-section">
-              <h4>Our Solution</h4>
+              <h4>{labels.solution}</h4>
               <p>{item.solution}</p>
             </div>
             <div class="case-section impact">
-              <h4>The Impact</h4>
+              <h4>{labels.impact}</h4>
               <p>{item.impact}</p>
             </div>
           </div>

@@ -1,5 +1,10 @@
 ---
-const services = [
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const services_en = [
   {
     title: "Custom AI Software Development",
     description: "Architecting end-to-end AI solutions from neural network optimization to large-scale deployment. We specialize in custom LLM integration, predictive analytics, and computer vision systems.",
@@ -25,11 +30,40 @@ const services = [
     tags: ["Staff Augmentation", "CI/CD", "Expertise"]
   }
 ];
+
+const services_id = [
+  {
+    title: "Pengembangan Perangkat Lunak AI Kustom",
+    description: "Merancang solusi AI end-to-end dari optimasi jaringan saraf hingga penerapan skala besar. Kami berspesialisasi dalam integrasi LLM khusus, analitik prediktif, dan sistem visi komputer.",
+    icon: "🤖",
+    tags: ["LLM", "Neural Networks", "PyTorch"]
+  },
+  {
+    title: "Sistem Otomasi Cerdas",
+    description: "Menghubungkan logika bisnis dengan eksekusi otonom. Sistem kami memanfaatkan alur kerja agentic untuk mengotomatiskan proses pengambilan keputusan yang kompleks, mengurangi overhead operasional dan latensi.",
+    icon: "⚙️",
+    tags: ["Agentic AI", "RPA", "Event-Driven"]
+  },
+  {
+    title: "Modernisasi Legacy & Migrasi Cloud",
+    description: "Mengembangkan arsitektur monolitik menjadi microservices cloud-native yang tangguh. Kami berspesialisasi dalam migrasi ketersediaan tinggi dengan persyaratan zero-downtime untuk sistem misi kritis.",
+    icon: "☁️",
+    tags: ["AWS", "Kubernetes", "Microservices"]
+  },
+  {
+    title: "Tim Teknik Berdedikasi",
+    description: "Meningkatkan kecepatan Anda dengan talenta tingkat senior. Model augmentasi staf kami menanamkan insinyur spesialis ke dalam sprint Anda, memastikan keunggulan CI/CD dan standar kode berkualitas tinggi.",
+    icon: "👥",
+    tags: ["Staff Augmentation", "CI/CD", "Expertise"]
+  }
+];
+
+const services = lang === 'en' ? services_en : services_id;
 ---
 <section id="services" class="services">
   <div class="container">
-    <span class="section-subtitle">Our Expertise</span>
-    <h2 class="section-title">Specialized Engineering for <span class="text-gold">Scalable AI</span></h2>
+    <span class="section-subtitle">{t('services.subtitle')}</span>
+    <h2 class="section-title">{t('services.title')} <span class="text-gold">{t('services.title_gold')}</span></h2>
     
     <div class="services-grid">
       {services.map(service => (
