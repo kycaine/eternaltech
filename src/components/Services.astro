@@ -6,56 +6,56 @@ const t = useTranslations(lang);
 
 const services_en = [
   {
-    title: "Custom AI Software Development",
-    description: "Architecting end-to-end AI solutions from neural network optimization to large-scale deployment. We specialize in custom LLM integration, predictive analytics, and computer vision systems.",
+    title: "AI Systems & LLM Integration",
+    description: "Integrate LLM APIs into backend systems and deploy ML/DL inference services using FastAPI, covering preprocessing, prediction endpoints, and production-ready integration.",
     icon: "🤖",
-    tags: ["LLMs", "Neural Networks", "PyTorch"]
+    tags: ["LLM Integration", "ML/DL Inference", "Model Serving"]
   },
   {
-    title: "Intelligent Automation Systems",
-    description: "Bridging business logic with autonomous execution. Our systems leverage agentic workflows to automate complex decision-making processes, reducing operational overhead and latency.",
+    title: "Backend API Development",
+    description: "Design and build scalable REST APIs using Go, Java (Spring Boot), Node.js, and Python for data-heavy and high-traffic systems.",
     icon: "⚙️",
-    tags: ["Agentic AI", "RPA", "Event-Driven"]
+    tags: ["Go", "Spring Boot", "Node.js", "Python", "REST API", "Async Processing", "SQL/NoSQL"]
   },
   {
-    title: "Legacy Modernization & Cloud Migration",
-    description: "Evolving monolithic architectures into resilient, cloud-native microservices. We specialize in high-availability migrations with zero-downtime requirements for mission-critical systems.",
+    title: "WhatsApp & Messaging Systems",
+    description: "Develop backend services for WhatsApp-based commerce and messaging gateways with high-volume request handling.",
+    icon: "💬",
+    tags: ["WhatsApp Gateway", "High-Volume Messaging", "Order Processing", "External API Integration"]
+  },
+  {
+    title: "System Architecture & Deployment",
+    description: "Containerize and deploy backend services using Docker and AWS, with experience in Kubernetes-based environments.",
     icon: "☁️",
-    tags: ["AWS", "Kubernetes", "Microservices"]
+    tags: ["Docker", "AWS (EC2, S3)", "Kubernetes", "RabbitMQ"]
   },
-  {
-    title: "Dedicated Engineering Team",
-    description: "Scaling your velocity with senior-level talent. Our staff augmentation model embeds specialist engineers into your sprints, ensuring CI/CD excellence and high-quality code standards.",
-    icon: "👥",
-    tags: ["Staff Augmentation", "CI/CD", "Expertise"]
-  }
 ];
 
 const services_id = [
   {
-    title: "Pengembangan Perangkat Lunak AI Kustom",
-    description: "Merancang solusi AI end-to-end dari optimasi jaringan saraf hingga penerapan skala besar. Kami berspesialisasi dalam integrasi LLM khusus, analitik prediktif, dan sistem visi komputer.",
+    title: "Sistem AI & Integrasi LLM",
+    description: "Mengintegrasikan API LLM ke dalam sistem backend serta melakukan deployment layanan inference ML/DL menggunakan FastAPI, mencakup preprocessing, endpoint prediksi, dan integrasi siap produksi.",
     icon: "🤖",
-    tags: ["LLM", "Neural Networks", "PyTorch"]
+    tags: ["Integrasi LLM", "Inference ML/DL", "Model Serving"]
   },
   {
-    title: "Sistem Otomasi Cerdas",
-    description: "Menghubungkan logika bisnis dengan eksekusi otonom. Sistem kami memanfaatkan alur kerja agentic untuk mengotomatiskan proses pengambilan keputusan yang kompleks, mengurangi overhead operasional dan latensi.",
+    title: "Pengembangan Backend API",
+    description: "Merancang dan membangun REST API yang scalable menggunakan Go, Java (Spring Boot), Node.js, dan Python untuk sistem dengan trafik tinggi dan data besar.",
     icon: "⚙️",
-    tags: ["Agentic AI", "RPA", "Event-Driven"]
+    tags: ["Go", "Spring Boot", "Node.js", "Python", "REST API", "Async Processing", "SQL/NoSQL"]
   },
   {
-    title: "Modernisasi Legacy & Migrasi Cloud",
-    description: "Mengembangkan arsitektur monolitik menjadi microservices cloud-native yang tangguh. Kami berspesialisasi dalam migrasi ketersediaan tinggi dengan persyaratan zero-downtime untuk sistem misi kritis.",
+    title: "Sistem WhatsApp & Messaging",
+    description: "Mengembangkan layanan backend untuk sistem WhatsApp commerce dan messaging gateway dengan kemampuan menangani request dalam volume tinggi.",
+    icon: "💬",
+    tags: ["WhatsApp Gateway", "High-Volume Messaging", "Order Processing", "Integrasi API Eksternal"]
+  },
+  {
+    title: "Arsitektur & Deployment Sistem",
+    description: "Melakukan containerization dan deployment layanan backend menggunakan Docker dan AWS, dengan pengalaman pada environment berbasis Kubernetes.",
     icon: "☁️",
-    tags: ["AWS", "Kubernetes", "Microservices"]
+    tags: ["Docker", "AWS (EC2, S3)", "Kubernetes", "RabbitMQ"]
   },
-  {
-    title: "Tim Teknik Berdedikasi",
-    description: "Meningkatkan kecepatan Anda dengan talenta tingkat senior. Model augmentasi staf kami menanamkan insinyur spesialis ke dalam sprint Anda, memastikan keunggulan CI/CD dan standar kode berkualitas tinggi.",
-    icon: "👥",
-    tags: ["Staff Augmentation", "CI/CD", "Expertise"]
-  }
 ];
 
 const services = lang === 'en' ? services_en : services_id;

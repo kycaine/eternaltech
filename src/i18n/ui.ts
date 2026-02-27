@@ -40,7 +40,7 @@ export const ui = {
         'workflow.subtitle': 'Our Process',
         'workflow.title': 'Engineering',
         'workflow.title_gold': 'Transparency',
-        'trust.title': 'Trusted by Tech-Driven Enterprises',
+        'trust.title': 'Built with Modern Engineering Principles',
     },
     id: {
         'nav.services': 'Layanan',
@@ -76,6 +76,6 @@ export const ui = {
         'workflow.subtitle': 'Proses Kami',
         'workflow.title': 'Transparansi',
         'workflow.title_gold': 'Rekayasa',
-        'trust.title': 'Dipercaya oleh Perusahaan Berbasis Teknologi',
+        'trust.title': 'dibangun dengan prinsip-prinsip teknik modern',
     },
 } as const;

@@ -5,23 +5,23 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const testimonial_en = {
-  quote: `"KyCaine EternalTech doesn't just write code; they engineer business outcomes."`,
-  position: "CTO, NexaSystems",
-  avatar: "🏢",
-  author: "Marcus Thorne"
+  quote: `"Well-designed architecture is not only scalable, but also maintainable and built for long-term evolution."`,
+  position: "EternalTech Team",
+  avatar: "⚙️",
+  author: "Engineering Principles"
 };
 
 const testimonial_id = {
-  quote: `"KyCaine EternalTech tidak hanya menulis kode; mereka merekayasa hasil bisnis."`,
-  position: "CTO, NexaSystems",
-  avatar: "🏢",
-  author: "Marcus Thorne"
+  quote: `"Arsitektur yang baik bukan hanya scalable, tetapi juga mudah dirawat dan dikembangkan dalam jangka panjang."`,
+  position: "Tim EternalTech",
+  avatar: "⚙️",
+  author: "Prinsip Engineering"
 };
 
 const testimonial = lang === 'en' ? testimonial_en : testimonial_id;
 
 const logos = [
-  "TechFlow", "AIGlobal", "CloudScale", "DataCore", "FinVantage"
+  "Async-First", "Clean Architecture", "API-Centric","Observable Systems", "Scalable by Design"
 ];
 ---
 <section id="trust" class="social-proof">
@@ -30,7 +30,7 @@ const logos = [
       <div class="quote-icon">"</div>
       <p class="quote-text">{testimonial.quote}</p>
       <div class="author-info">
-        <span class="author-avatar">{testimonial.avatar}</span>
+        <!-- <span class="author-avatar">{testimonial.avatar}</span> -->
         <div>
           <h4 class="author-name">{testimonial.author}</h4>
           <span class="author-position">{testimonial.position}</span>
