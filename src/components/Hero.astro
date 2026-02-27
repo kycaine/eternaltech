@@ -5,7 +5,15 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 <section class="hero parallax-section">
-  <video class="site-bg-video" autoplay muted loop playsinline>
+ <video 
+    class="site-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster="/eternaltech/bg-poster.jpg"
+  >
     <source src="/eternaltech/bg.mp4" type="video/mp4">
   </video>
 
