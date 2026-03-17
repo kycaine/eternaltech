@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import ConsultationModal from './ConsultationModal.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,11 +14,12 @@ const t = useTranslations(lang);
         {t('cta.text')}
       </p>
       <div class="cta-actions">
-        <a href="mailto:consult@kycaine.tech" class="btn btn-gold">{t('cta.btn_primary')}</a>
+        <button class="btn btn-gold" data-open-consultation>{t('cta.btn_primary')}</button>
         <a href="#portfolio" class="btn btn-secondary inverse">{t('cta.btn_secondary')}</a>
       </div>
     </div>
   </div>
+  <ConsultationModal />
 </section>
 
 <style>

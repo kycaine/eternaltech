@@ -1,0 +1,439 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div id="consultation-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <div class="modal-container">
+    <div class="modal-content">
+      <button id="close-modal" class="close-btn" aria-label={t("modal.close")}>
+        <svg
+          xmlns="http://www.w3.org/1999/xlink"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><line x1="18" y1="6" x2="6" y2="18"></line><line
+            x1="6"
+            y1="6"
+            x2="18"
+            y2="18"></line></svg
+        >
+      </button>
+
+      <div class="modal-header">
+        <h2 class="modal-title">{t("modal.title")}</h2>
+        <p class="modal-desc">{t("modal.description")}</p>
+      </div>
+
+      <div class="modal-options">
+        <!-- Email Form Section -->
+        <form id="email-consultation-form" class="email-form">
+          <div class="form-group">
+            <label for="subject">{t('modal.form_subject')}</label>
+            <input 
+              type="text" 
+              name="subject" 
+              id="form-subject" 
+              value={t('modal.form_subject_tpl')} 
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">{t('modal.form_message')}</label>
+            <textarea 
+              name="message" 
+              id="form-message" 
+              rows="4" 
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="send-email-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            {t('modal.form_send')}
+          </button>
+        </form>
+
+        <!-- OR Divider -->
+        <div class="modal-divider">
+          <span>{t('modal.or_divider')}</span>
+        </div>
+
+        <!-- WhatsApp Option -->
+        <a
+          href="https://wa.me/6285176861181"
+          class="option-card wa-option"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="option-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.488 0 9.754-4.414 9.756-9.756.002-5.488-4.415-9.754-9.756-9.756-5.489 0-9.756 4.415-9.756 9.756 0 2.226.546 3.961 1.682 5.679l-1.019 3.722 3.701-.971zm11.367-7.384c-.314-.157-1.855-.915-2.144-1.02-.289-.105-.499-.157-.709.157-.21.314-.813 1.02-.997 1.229-.183.209-.367.235-.681.079-.314-.157-1.326-.488-2.527-1.559-.933-.832-1.563-1.86-1.746-2.174-.183-.314-.02-.485.137-.641.141-.14.314-.366.471-.55.157-.183.209-.314.314-.524.105-.21.052-.393-.026-.55-.078-.157-.709-1.706-.971-2.335-.255-.612-.513-.529-.709-.538-.182-.008-.393-.01-.603-.01-.21 0-.551.079-.839.393-.289.314-1.101 1.074-1.101 2.618 0 1.545 1.127 3.037 1.284 3.247.157.21 2.219 3.388 5.374 4.755.751.326 1.336.52 1.792.665.754.239 1.44.205 1.983.124.605-.09 1.855-.759 2.118-1.493.262-.733.262-1.361.183-1.493-.079-.131-.289-.209-.603-.366z"
+              ></path></svg
+            >
+          </div>
+          <div class="option-text">
+            <h3>{t("modal.wa_title")}</h3>
+            <p>{t("modal.wa_desc")}</p>
+          </div>
+          <div class="option-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+                points="12 5 19 12 12 19"></polyline></svg
+            >
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+  }
+
+  .modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .modal-overlay.active .modal-container {
+    transform: translateY(0);
+  }
+
+  .modal-content {
+    background: rgba(45, 30, 20, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    position: relative;
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(212, 175, 55, 0.1);
+    background-image: radial-gradient(
+      circle at 0% 0%,
+      rgba(212, 175, 55, 0.05) 0%,
+      transparent 50%
+    );
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .close-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--color-gold);
+    transform: rotate(90deg);
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--color-white);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .modal-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Email Form Styles */
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: left;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: var(--color-white);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    background: rgba(212, 175, 55, 0.05);
+  }
+
+  .submit-btn {
+    background: var(--color-gold);
+    color: var(--color-dark-brown);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    background: var(--color-white);
+    transform: translateY(-2px);
+  }
+
+  .submit-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .submit-btn:hover svg {
+    transform: translate(3px, -3px);
+  }
+
+  /* Divider Styles */
+  .modal-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .modal-divider::before,
+  .modal-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .modal-divider span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+
+  .option-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option-card:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .option-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .wa-option:hover .option-icon {
+    background: rgba(37, 211, 102, 0.1);
+    color: #25d366;
+  }
+
+  .email-option:hover .option-icon {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--color-gold);
+  }
+
+  .option-text h3 {
+    color: var(--color-white);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    transition: color 0.3s ease;
+  }
+
+  .option-text p {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .option-arrow {
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .option-card:hover .option-arrow {
+    color: var(--color-gold);
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 480px) {
+    .modal-content {
+      padding: 2.5rem 1.5rem;
+    }
+    .modal-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  function setupModal() {
+    const modal = document.getElementById("consultation-modal");
+    const closeBtn = document.getElementById("close-modal");
+    const backdrop = document.getElementById("modal-backdrop");
+    const triggers = document.querySelectorAll("[data-open-consultation]");
+
+    const openModal = (e: Event) => {
+      e.preventDefault();
+      modal?.classList.add("active");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modal?.classList.remove("active");
+      document.body.style.overflow = "";
+    };
+
+    const setupForm = () => {
+      const form = document.getElementById("email-consultation-form") as HTMLFormElement;
+      if (!form) return;
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const subjectInput = document.getElementById("form-subject") as HTMLInputElement;
+        const messageInput = document.getElementById("form-message") as HTMLTextAreaElement;
+        
+        const subject = encodeURIComponent(subjectInput.value);
+        const body = encodeURIComponent(messageInput.value);
+        const recipient = "rizkyap90s@gmail.com";
+        
+        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      });
+    };
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", openModal);
+    });
+
+    closeBtn?.addEventListener("click", closeModal);
+    backdrop?.addEventListener("click", closeModal);
+    setupForm();
+
+    // Escape key to close
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal?.classList.contains("active")) {
+        closeModal();
+      }
+    });
+  }
+
+  // Setup on page load
+  setupModal();
+
+  // Re-run for view transitions if needed
+  document.addEventListener("astro:after-swap", setupModal);
+</script>
