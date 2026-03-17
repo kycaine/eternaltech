@@ -5,7 +5,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div id="consultation-modal" class="modal-overlay" aria-hidden="true">
+<div id="consultation-modal" class="modal-overlay">
   <div class="modal-backdrop" id="modal-backdrop"></div>
   <div class="modal-container">
     <div class="modal-content">
@@ -35,9 +35,9 @@ const t = useTranslations(lang);
 
       <div class="modal-options">
         <!-- Email Form Section -->
-        <form id="email-consultation-form" class="email-form">
+        <div class="email-form">
           <div class="form-group">
-            <label for="subject">{t('modal.form_subject')}</label>
+            <label for="form-subject">{t('modal.form_subject')}</label>
             <input 
               type="text" 
               name="subject" 
@@ -47,7 +47,7 @@ const t = useTranslations(lang);
             />
           </div>
           <div class="form-group">
-            <label for="message">{t('modal.form_message')}</label>
+            <label for="form-message">{t('modal.form_message')}</label>
             <textarea 
               name="message" 
               id="form-message" 
@@ -55,11 +55,11 @@ const t = useTranslations(lang);
               required
             ></textarea>
           </div>
-          <button type="submit" class="submit-btn" id="send-email-btn">
+          <a href="#" id="send-email-btn" class="submit-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             {t('modal.form_send')}
-          </button>
-        </form>
+          </a>
+        </div>
 
         <!-- OR Divider -->
         <div class="modal-divider">
@@ -265,6 +265,7 @@ const t = useTranslations(lang);
     justify-content: center;
     gap: 0.75rem;
     transition: all 0.3s ease;
+    text-decoration: none;
   }
 
   .submit-btn:hover {
@@ -390,33 +391,73 @@ const t = useTranslations(lang);
     const openModal = (e: Event) => {
       e.preventDefault();
       modal?.classList.add("active");
+      modal?.removeAttribute("aria-hidden");
       document.body.style.overflow = "hidden";
     };
 
     const closeModal = () => {
       modal?.classList.remove("active");
+      modal?.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     };
 
     const setupForm = () => {
-      const form = document.getElementById("email-consultation-form") as HTMLFormElement;
-      if (!form) return;
+      const subjectInput = document.getElementById("form-subject") as HTMLInputElement;
+      const messageInput = document.getElementById("form-message") as HTMLTextAreaElement;
+      const sendBtn = document.getElementById("send-email-btn") as HTMLAnchorElement;
+      
+      if (!subjectInput || !messageInput || !sendBtn) return;
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const subjectInput = document.getElementById("form-subject") as HTMLInputElement;
-        const messageInput = document.getElementById("form-message") as HTMLTextAreaElement;
-        
+      const getMailtoUrl = () => {
         const subject = encodeURIComponent(subjectInput.value);
         const body = encodeURIComponent(messageInput.value);
         const recipient = "rizkyap90s@gmail.com";
+        return `mailto:${recipient}?subject=${subject}&body=${body}`;
+      };
+
+      const getGmailUrl = () => {
+        const subject = encodeURIComponent(subjectInput.value);
+        const body = encodeURIComponent(messageInput.value);
+        const recipient = "rizkyap90s@gmail.com";
+        return `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${body}`;
+      };
+
+      // Handle the direct click for fallback logic
+      sendBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         
-        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        let hasBlurred = false;
+        const onBlur = () => { hasBlurred = true; };
+        window.addEventListener("blur", onBlur);
+
+        // Try the default app
+        window.location.href = getMailtoUrl();
+
+        // After 2 seconds, check if we stayed on the page
+        setTimeout(() => {
+          window.removeEventListener("blur", onBlur);
+          if (!hasBlurred) {
+            // No app hijacked the focus, so open Gmail Web
+            console.log("No email app detected, falling back to Gmail Web");
+            window.open(getGmailUrl(), "_blank");
+          }
+        }, 2000);
       });
+
+      // Also keep href updated for "open in new tab" context or standard behavior
+      const updateHref = () => {
+        sendBtn.href = getMailtoUrl();
+      };
+      subjectInput.addEventListener("input", updateHref);
+      messageInput.addEventListener("input", updateHref);
+      updateHref();
     };
 
     triggers.forEach((trigger) => {
-      trigger.addEventListener("click", openModal);
+      trigger.addEventListener("click", (e) => {
+        openModal(e);
+        setupForm(); // Re-sync initial values
+      });
     });
 
     closeBtn?.addEventListener("click", closeModal);
