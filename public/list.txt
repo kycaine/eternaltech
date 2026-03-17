@@ -1,2 +1,0 @@
-file 'bg.mp4'
-file 'bg-reverse.mp4'
